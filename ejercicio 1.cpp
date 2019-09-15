@@ -3,13 +3,17 @@
 #include<string.h>
 #include<locale>
 using namespace std;
+
 struct nodo{
     int valor;
     struct nodo *Ptr;
 };
+
 int main(int argc,char** argv){
     char *locale;
     locale=setlocale(LC_ALL,"");
+    struct nodo *inicio;
+    struct nodo *auxiliar;
     struct nodo N1;
     struct nodo N2;
     struct nodo N3;
@@ -17,13 +21,13 @@ int main(int argc,char** argv){
     struct nodo N5;
     
     N1.valor=3;
-    N1.Ptr=	NULL;
+    N1.Ptr=	NULL; 
     N2.valor=7;
     N2.Ptr=	NULL;
     N3.valor=9;
     N3.Ptr=	NULL;
     N4.valor=2;
-    N4.Ptr=	NULL;
+    N4.Ptr=	NULL;  
     N5.valor=4;
     N5.Ptr=	NULL;
     
@@ -38,5 +42,41 @@ int main(int argc,char** argv){
     cout<<"Nodo 4. "<<N1.Ptr->Ptr->Ptr->valor<<endl;
     cout<<"Nodo 5. "<<N1.Ptr->Ptr->Ptr->Ptr->valor<<endl;
     cout<<"Nodo 1. "<<N1.Ptr->Ptr->Ptr->Ptr->Ptr->valor<<endl;
-    return 0; 
+    cout<<endl;
+    
+	auxiliar=new nodo();
+	auxiliar->Ptr=NULL;
+	auxiliar->valor=9;
+	inicio=auxiliar;
+	
+	auxiliar=new nodo();
+	auxiliar->Ptr=NULL;
+	auxiliar->valor=3;
+	inicio->Ptr=auxiliar;
+	
+	auxiliar=new nodo();
+	auxiliar->Ptr=NULL;
+	auxiliar->valor=6;
+	inicio->Ptr->Ptr=auxiliar;
+	
+	auxiliar=new nodo();
+	auxiliar->Ptr=NULL;
+	auxiliar->valor=5;
+	inicio->Ptr->Ptr->Ptr=auxiliar;
+	
+	auxiliar=new nodo();
+	auxiliar->Ptr=NULL;
+	auxiliar->valor=1;
+	inicio->Ptr->Ptr->Ptr->Ptr=auxiliar;
+	
+	cout<<" auxiliar 1. "<<inicio->valor<<endl;
+    cout<<" auxiliar 2. "<<inicio->Ptr->valor<<endl;
+    cout<<" auxiliar 3. "<<inicio->Ptr->Ptr->valor<<endl;
+    cout<<" auxiliar 4. "<<inicio->Ptr->Ptr->Ptr->valor<<endl;
+    cout<<" auxiliar 5. "<<inicio->Ptr->Ptr->Ptr->Ptr->valor<<endl;
+    
+	
+ 
+    return 0;
+    
 }

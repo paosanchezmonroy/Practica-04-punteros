@@ -1,82 +1,73 @@
-#include<iostream>
-#include<stdio.h>
 #include<string.h>
 #include<locale>
-using namespace std;
+#include<conio.h>
+#include<iostream>
 
+using namespace std;
 struct nodo{
     int valor;
     struct nodo *Ptr;
 };
 
+void funcion_agregar(int, nodo*&);
+void mostrar_datos(nodo*&);
+
 int main(int argc,char** argv){
     char *locale;
     locale=setlocale(LC_ALL,"");
     struct nodo *inicio;
-    struct nodo *auxiliar;
-    struct nodo N1;
-    struct nodo N2;
-    struct nodo N3;
-    struct nodo N4;
-    struct nodo N5;
+    struct nodo *aux;
+    inicio=NULL;
+    int num;
+    int val;
+    do{
+	cout<<".::Elija una opcion::."<<endl;
+	cout<<"1. Agregar"<<endl;
+	cout<<"2. Mostrar datos "<<endl;
+	cout<<"3. Salir "<<endl;
+	cin>>num;
+	switch (num)
+ 	{
+ 	case 1:
+ 	cout<<"Ingrese valor: ";
+ 	cin>>val;
+ 	funcion_agregar (val, inicio);
+ 	break;
+	case 2:
+    mostrar_datos (inicio);
+    break;
+    case 3:
+	cout<<"Vuelva pronto"<<endl;
+	break;	
+	default:
+		cout<<"Ingrese una opcion valida"<<endl;
+	break;
+ 	}
+	}while (num!=3);
+	getch();
+	return 0;
+}
     
-    N1.valor=3;
-    N1.Ptr=	NULL; 
-    N2.valor=7;
-    N2.Ptr=	NULL;
-    N3.valor=9;
-    N3.Ptr=	NULL;
-    N4.valor=2;
-    N4.Ptr=	NULL;  
-    N5.valor=4;
-    N5.Ptr=	NULL;
-    
-    N1.Ptr=&N2;
-    N2.Ptr=&N3;
-    N3.Ptr=&N4;
-	N4.Ptr=&N5;
-	N5.Ptr=&N1;
+    void funcion_agregar( int valor, nodo *&Ptr){
+	struct nodo *inicio;
+    struct nodo *auxiliar2; 
+    inicio=Ptr;
+	auxiliar2=new nodo();
+	auxiliar2->valor=valor;
+	auxiliar2->Ptr=NULL;
+    if(inicio==NULL){
+		Ptr=auxiliar2;
+		}
+}
+
 	
-    cout<<"Nodo 2. "<<N1.Ptr->valor<<endl;
-    cout<<"Nodo 3. "<<N1.Ptr->Ptr->valor<<endl;
-    cout<<"Nodo 4. "<<N1.Ptr->Ptr->Ptr->valor<<endl;
-    cout<<"Nodo 5. "<<N1.Ptr->Ptr->Ptr->Ptr->valor<<endl;
-    cout<<"Nodo 1. "<<N1.Ptr->Ptr->Ptr->Ptr->Ptr->valor<<endl;
-    cout<<endl;
-    
-	auxiliar=new nodo();
-	auxiliar->Ptr=NULL;
-	auxiliar->valor=9;
-	inicio=auxiliar;
+
+void mostrar_datos (nodo *&Ptr){
+	do{
+		cout<<"El valor del pauntador es: "<<Ptr->valor<<endl;
+		Ptr=Ptr->Ptr;
+		
 	
-	auxiliar=new nodo();
-	auxiliar->Ptr=NULL;
-	auxiliar->valor=3;
-	inicio->Ptr=auxiliar;
+	}while(Ptr!=NULL);
 	
-	auxiliar=new nodo();
-	auxiliar->Ptr=NULL;
-	auxiliar->valor=6;
-	inicio->Ptr->Ptr=auxiliar;
-	
-	auxiliar=new nodo();
-	auxiliar->Ptr=NULL;
-	auxiliar->valor=5;
-	inicio->Ptr->Ptr->Ptr=auxiliar;
-	
-	auxiliar=new nodo();
-	auxiliar->Ptr=NULL;
-	auxiliar->valor=1;
-	inicio->Ptr->Ptr->Ptr->Ptr=auxiliar;
-	
-	cout<<" auxiliar 1. "<<inicio->valor<<endl;
-    cout<<" auxiliar 2. "<<inicio->Ptr->valor<<endl;
-    cout<<" auxiliar 3. "<<inicio->Ptr->Ptr->valor<<endl;
-    cout<<" auxiliar 4. "<<inicio->Ptr->Ptr->Ptr->valor<<endl;
-    cout<<" auxiliar 5. "<<inicio->Ptr->Ptr->Ptr->Ptr->valor<<endl;
-    
-	
- 
-    return 0;
-    
 }
